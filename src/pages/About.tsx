@@ -80,7 +80,7 @@ const About: React.FC = () => {
 
       <div className="flex-1 text-center lg:text-left">
         <p className="text-lg md:text-xl leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-6">
-          I'm a Full Stack Developer passionate about crafting modern, performant web apps.
+          I&apos;m a Full Stack Developer passionate about crafting modern, performant web apps.
           My stack includes React, Next.js, TailwindCSS, and Three.js for the frontend, while I build robust APIs with Node.js, Express, and databases like PostgreSQL and MongoDB.
         </p>
         <div className='w-7 mx-auto lg:mx-0 mb-6'>

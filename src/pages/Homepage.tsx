@@ -98,8 +98,9 @@ const Homepage: React.FC = () => {
           className="w-1/3 pl-8 text-white text-left"
         >
           <h1 className="text-4xl lg:text-5xl font-bold">
-            Hey there! <br /> I'm Khaja Zoheb Uddin
+            Hey there! <br /> I&apos;m Khaja Zoheb Uddin
           </h1>
+
           <motion.h2
             key={index}
             initial={{ opacity: 0, y: 20 }}
