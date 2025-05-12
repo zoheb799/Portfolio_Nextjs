@@ -19,7 +19,7 @@ const allSkills = Object.values(skills).flat();
 
 function Word({ children, ...props }: { children: React.ReactNode; [key: string]: unknown }) {
   const color = new THREE.Color();
-  const ref = useRef();
+  const ref = useRef<THREE.Mesh | null>(null);
   const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
@@ -27,7 +27,9 @@ function Word({ children, ...props }: { children: React.ReactNode; [key: string]
   }, [hovered]);
 
   useFrame(() => {
-    ref.current.material.color.lerp(color.set(hovered ? '#00ffff' : 'white'), 0.1);
+    if (ref.current) {
+      (ref.current.material as THREE.MeshStandardMaterial).color.lerp(color.set(hovered ? '#00ffff' : 'white'), 0.1);
+    }
   });
 
   return (
@@ -47,7 +49,7 @@ function Word({ children, ...props }: { children: React.ReactNode; [key: string]
   );
 }
 
-function Cloud({ words, radius = 20 }) {
+function Cloud({ words, radius = 20 }: { words: string[]; radius?: number }) {
   const wordPositions = useMemo(() => {
     const spherical = new THREE.Spherical();
     const count = Math.ceil(Math.sqrt(words.length));

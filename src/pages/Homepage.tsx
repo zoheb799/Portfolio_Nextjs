@@ -9,6 +9,7 @@ import {
   Environment,
   Grid
 } from "@react-three/drei";
+import * as THREE from "three";
 import dynamic from "next/dynamic";
 import { easing } from "maath";
 import Mail from "@/assets/Mail";
@@ -69,7 +70,7 @@ const Homepage: React.FC = () => {
               cellThickness={0.6}
               sectionSize={3.3}
               sectionThickness={1.5}
-              sectionColor={[0.5, 0.5, 10]}
+              sectionColor={new THREE.Color(0.5, 0.5, 10)}
               fadeDistance={30}
             />
             <OrbitControls
@@ -80,7 +81,7 @@ const Homepage: React.FC = () => {
               minPolarAngle={Math.PI / 2}
               maxPolarAngle={Math.PI / 2}
             />
-            <EffectComposer disableNormalPass>
+            <EffectComposer enableNormalPass={false}>
               <Bloom luminanceThreshold={2} mipmapBlur />
               <ToneMapping />
             </EffectComposer>
@@ -156,9 +157,9 @@ const Kamdo = memo((props: KamdoProps) => {
   const stripe = useRef<THREE.MeshBasicMaterial>(null);
   const light = useRef<THREE.PointLight>(null);
 
-  const { nodes, materials }: unknown = useGLTF(
+  const { nodes, materials } = useGLTF(
     "Assets/s2wt_kamdo_industrial_divinities-transformed.glb"
-  );
+  ) as unknown as { nodes: Record<string, THREE.Mesh>, materials: Record<string, THREE.Material> };
 
   useFrame((state, delta) => {
     const t = (1 + Math.sin(state.clock.elapsedTime * 2)) / 2;
