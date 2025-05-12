@@ -156,7 +156,7 @@ const Kamdo = memo((props: KamdoProps) => {
   const stripe = useRef<THREE.MeshBasicMaterial>(null);
   const light = useRef<THREE.PointLight>(null);
 
-  const { nodes, materials }: any = useGLTF(
+  const { nodes, materials }: unknown = useGLTF(
     "Assets/s2wt_kamdo_industrial_divinities-transformed.glb"
   );
 
