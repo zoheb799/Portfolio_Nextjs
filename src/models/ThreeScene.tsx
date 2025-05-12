@@ -71,13 +71,13 @@ export default function ThreeScene() {
   )
 }
 
-function Bunny(props: unknown) {
-  const { nodes } = useGLTF(suspend(bunnyGLB).default)
+function Bunny(props: JSX.IntrinsicElements['mesh']) {
+  const { nodes } = useGLTF(bunnyGLB) as unknown;
   return (
     <mesh receiveShadow castShadow geometry={nodes.mesh.geometry} {...props}>
       <meshStandardMaterial color="#222" roughness={0.5} />
     </mesh>
-  )
+  );
 }
 
 function CameraRig() {
