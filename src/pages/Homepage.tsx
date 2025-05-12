@@ -149,24 +149,36 @@ const Homepage: React.FC = () => {
 export default memo(Homepage);
 
 // === Kamdo GLTF Model ===
-const Kamdo = memo((props: any) => {
-  const head = useRef<any>();
-  const stripe = useRef<any>();
-  const light = useRef<any>();
-  const { nodes, materials } = useGLTF(
+type KamdoProps = JSX.IntrinsicElements["group"];
+
+const Kamdo = memo((props: KamdoProps) => {
+  const head = useRef<THREE.Group>(null);
+  const stripe = useRef<THREE.MeshBasicMaterial>(null);
+  const light = useRef<THREE.PointLight>(null);
+
+  const { nodes, materials }: any = useGLTF(
     "Assets/s2wt_kamdo_industrial_divinities-transformed.glb"
   );
 
   useFrame((state, delta) => {
     const t = (1 + Math.sin(state.clock.elapsedTime * 2)) / 2;
-    stripe.current.color.setRGB(2 + t * 20, 2, 20 + t * 50);
-    easing.dampE(
-      head.current.rotation,
-      [0, state.pointer.x * (state.camera.position.z > 1 ? 1 : -1), 0],
-      0.4,
-      delta
-    );
-    light.current.intensity = 1 + t * 4;
+
+    if (stripe.current) {
+      stripe.current.color.setRGB(2 + t * 20, 2, 20 + t * 50);
+    }
+
+    if (head.current) {
+      easing.dampE(
+        head.current.rotation,
+        [0, state.pointer.x * (state.camera.position.z > 1 ? 1 : -1), 0],
+        0.4,
+        delta
+      );
+    }
+
+    if (light.current) {
+      light.current.intensity = 1 + t * 4;
+    }
   });
 
   return (
@@ -193,4 +205,9 @@ const Kamdo = memo((props: any) => {
   );
 });
 
+// Optional: add displayName for better debugging
+Kamdo.displayName = "Kamdo";
+
+// Preload GLTF model
 useGLTF.preload("Assets/s2wt_kamdo_industrial_divinities-transformed.glb");
+

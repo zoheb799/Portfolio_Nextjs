@@ -71,7 +71,7 @@ export default function ThreeScene() {
   )
 }
 
-function Bunny(props: any) {
+function Bunny(props: unknown) {
   const { nodes } = useGLTF(suspend(bunnyGLB).default)
   return (
     <mesh receiveShadow castShadow geometry={nodes.mesh.geometry} {...props}>

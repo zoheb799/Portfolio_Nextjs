@@ -65,7 +65,10 @@ function Cloud({ words, radius = 20 }) {
   }, [words, radius]);
 
   return wordPositions.map(([pos, word], i) => (
-    <Word key={i} position={pos} children={word} />
+    <Word key={i} position={pos}>
+  {word}
+</Word>
+
   ));
 }
 

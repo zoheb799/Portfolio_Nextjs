@@ -193,7 +193,7 @@ interface ScreenProps {
 }
 
 function Screen({ frame, panel, children, ...props }: ScreenProps) {
-  const { nodes, materials } = useGLTF('Assets/computer.glb') as any
+  const { nodes, materials } = useGLTF('Assets/computer.glb') as unknown
   return (
     <group {...props}>
       <mesh castShadow receiveShadow geometry={nodes[frame].geometry} material={materials.Texture} />
@@ -266,7 +266,7 @@ interface LedsProps {
 
 function Leds({ instances }: LedsProps) {
   const ref = useRef<THREE.Group>(null)
-  const { nodes } = useGLTF('Assets/computer.glb') as any
+  const { nodes } = useGLTF('Assets/computer.glb') as unknown
   useMemo(() => {
     nodes.Sphere.material = new THREE.MeshBasicMaterial()
     nodes.Sphere.material.toneMapped = false
