@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState, useRef, Suspense, memo } from "react";
+import React, { useEffect, useState, useRef, Suspense, memo, JSX } from "react";
 import { motion } from "framer-motion";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
