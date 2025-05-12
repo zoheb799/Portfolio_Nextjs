@@ -17,7 +17,7 @@ const skills = {
 
 const allSkills = Object.values(skills).flat();
 
-function Word({ children, ...props }) {
+function Word({ children, ...props }: { children: React.ReactNode; [key: string]: unknown }) {
   const color = new THREE.Color();
   const ref = useRef();
   const [hovered, setHovered] = useState(false);
