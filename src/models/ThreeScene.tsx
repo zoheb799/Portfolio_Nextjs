@@ -4,7 +4,6 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { useGLTF, MeshReflectorMaterial, BakeShadows } from '@react-three/drei'
 import { EffectComposer, Bloom, DepthOfField } from '@react-three/postprocessing'
 import { easing } from 'maath'
-import { suspend } from 'suspend-react'
 import { Instances, Computers } from '../models/computer'
 
 const bunnyGLB = 'https://raw.githubusercontent.com/pmndrs/assets/master/models/bunny.glb'
