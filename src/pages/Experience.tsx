@@ -1,7 +1,20 @@
+"use client";
 import React, { useEffect, useState } from "react";
-import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
-import 'react-vertical-timeline-component/style.min.css';
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
+
+// Dynamic import to prevent SSR issues with `VerticalTimeline`
+const VerticalTimeline = dynamic(
+  () => import("react-vertical-timeline-component").then((mod) => mod.VerticalTimeline),
+  { ssr: false }
+);
+
+const VerticalTimelineElement = dynamic(
+  () => import("react-vertical-timeline-component").then((mod) => mod.VerticalTimelineElement),
+  { ssr: false }
+);
+
+import 'react-vertical-timeline-component/style.min.css';
 
 // Define types
 type ExperienceItem = {
