@@ -11,11 +11,17 @@
   "dependencies": {
     "@react-three/drei": "^10.0.7",
     "@react-three/fiber": "^9.1.2",
+    "@react-three/postprocessing": "^3.0.4",
+    "@splinetool/react-spline": "^4.0.0",
     "framer-motion": "^12.9.4",
+    "gray-matter": "^4.0.3",
     "gsap": "^3.13.0",
+    "lucide-react": "^0.507.0",
+    "maath": "^0.10.8",
     "next": "15.3.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-markdown": "^10.1.0",
     "react-vertical-timeline-component": "^3.5.3",
     "three": "^0.176.0"
   },

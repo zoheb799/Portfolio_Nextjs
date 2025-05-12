@@ -1,8 +1,9 @@
 import React from "react";
+import Link from "next/link";
 
 type Project = {
   title: string;
-  url: string;
+  slug: string;
   image: string;
   techStack: string;
   large: boolean;
@@ -10,45 +11,45 @@ type Project = {
 
 const projects: Project[] = [
   {
-    title: "Project 1",
-    url: "https://example.com/project1",
-    image: "https://via.placeholder.com/400",
-    techStack: "React, Node.js",
+    title: "Task Management System",
+    slug: "Taskmanagement",
+    image: "https://via.placeholder.com/400x300?text=Task+Management",
+    techStack: "MERN Stack, Socket.IO",
     large: true,
   },
   {
-    title: "Project 2",
-    url: "https://example.com/project2",
-    image: "https://via.placeholder.com/400",
-    techStack: "Angular, Firebase",
+    title: "Image Converter App",
+    slug: "Imageconverter",
+    image: "https://via.placeholder.com/400x300?text=Image+Converter",
+    techStack: "Next.js, Node.js, Sharp",
     large: false,
   },
   {
-    title: "Project 3",
-    url: "https://example.com/project3",
-    image: "https://via.placeholder.com/400",
-    techStack: "Vue, Django",
+    title: "Task Management System",
+    slug: "Taskmanagement",
+    image: "https://via.placeholder.com/400x300?text=Task+Management",
+    techStack: "MERN Stack, Socket.IO",
     large: true,
   },
   {
-    title: "Project 4",
-    url: "https://example.com/project4",
-    image: "https://via.placeholder.com/400",
-    techStack: "Svelte, Go",
+    title: "Task Management System",
+    slug: "Taskmanagement",
+    image: "https://via.placeholder.com/400x300?text=Task+Management",
+    techStack: "MERN Stack, Socket.IO",
     large: true,
   },
   {
-    title: "Project 5",
-    url: "https://example.com/project5",
-    image: "https://via.placeholder.com/400",
-    techStack: "Next.js, Express.js",
+    title: "Task Management System",
+    slug: "Taskmanagement",
+    image: "https://via.placeholder.com/400x300?text=Task+Management",
+    techStack: "MERN Stack, Socket.IO",
     large: true,
   },
   {
-    title: "Project 6",
-    url: "https://example.com/project6",
-    image: "https://via.placeholder.com/400",
-    techStack: "Flask, PostgreSQL",
+    title: "Personal Portfolio",
+    slug: "portfolio",
+    image: "https://via.placeholder.com/400x300?text=Portfolio+Website",
+    techStack: "Next.js, Tailwind CSS",
     large: true,
   },
 ];
@@ -56,16 +57,16 @@ const projects: Project[] = [
 const Projects: React.FC = () => {
   return (
     <div className="p-6">
-      <h2 className="text-center text-3xl font-bold mb-4">Image Gallery</h2>
-      <p className="text-center text-lg mb-8">Explore our diverse range of project images.</p>
+      <h2 className="text-center text-3xl font-bold mb-4">My Projects</h2>
+      <p className="text-center text-lg mb-8">
+        Explore detailed, custom-built project pages.
+      </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project, index) => (
-          <a
+          <Link
             key={index}
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={`/projects/${project.slug}`}
             className={`relative block w-full overflow-hidden rounded-lg shadow-lg transform transition duration-500 hover:scale-105 ${
               project.large ? "row-span-2" : "row-span-1"
             }`}
@@ -84,7 +85,7 @@ const Projects: React.FC = () => {
             </div>
 
             <div className="absolute bottom-4 right-4 w-5 h-5 bg-white rounded-full opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
-          </a>
+          </Link>
         ))}
       </div>
     </div>

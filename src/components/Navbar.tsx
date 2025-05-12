@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Menu from "../assets/Menu";
-import Close from "../assets/close";
-import Logo from "../assets/Logo.svg";
+import { Menu, X } from "lucide-react"; // ✅ Lucide icons
 import Link from "next/link";
+import Logo from "../assets/Logo.tsx"; // Assuming this is your custom logo component
 
 interface NavLink {
   id: string;
@@ -30,11 +29,13 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className={`w-full z-10 flex items-center justify-center py-5 fixed top-0 ${
-        scrolled ? "bg-black bg-opacity-[5%] backdrop-blur-sm shadow-sm" : "bg-transparent"
+      className={`w-full z-30 fixed top-0 py-4 transition-all duration-300 ${
+        scrolled
+          ? "bg-white/10 backdrop-blur-md border-b border-white/10 shadow-md"
+          : "bg-transparent"
       }`}
     >
-      <div className="w-full flex justify-between items-center max-w-7xl mx-3">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6">
         {/* Logo */}
         <Link
           href="/"
@@ -44,20 +45,20 @@ const Navbar: React.FC = () => {
             window.scrollTo(0, 0);
           }}
         >
-          <img src={Logo} alt="Logo" className="w-9 h-9 object-contain" />
-          <p className="text-white text-[18px] font-bold cursor-pointer flex justify-center items-center">
-            ZOH<span className="sm:block">EB</span>
+          <Logo />
+          <p className="text-white text-xl font-bold tracking-wide">
+            ZOH<span className="hidden sm:inline">EB</span>
           </p>
         </Link>
 
         {/* Desktop Nav Links */}
-        <ul className="list-none hidden sm:flex flex-row gap-10">
+        <ul className="hidden sm:flex gap-10">
           {navLinks.map((nav) => (
             <li
               key={nav.id}
               className={`${
-                active === nav.title ? "text-white" : "text-secondary"
-              } hover:text-white text-[18px] font-medium cursor-pointer`}
+                active === nav.title ? "text-white" : "text-gray-300"
+              } hover:text-white text-base font-medium transition-colors duration-200`}
               onClick={() => setActive(nav.title)}
             >
               <a href={`#${nav.id}`}>{nav.title}</a>
@@ -65,29 +66,28 @@ const Navbar: React.FC = () => {
           ))}
         </ul>
 
-        {/* Mobile Menu Icon */}
-        <div className="sm:hidden flex flex-1 justify-end items-center">
+        {/* Mobile Menu Toggle */}
+        <div className="sm:hidden justify-between items-center flex">
           {toggle ? (
-            <Close
-              className="w-[28px] h-[28px] object-contain cursor-pointer"
+            <X
+              className="w-7 h-7 text-white cursor-pointer"
               onClick={() => setToggle(false)}
             />
           ) : (
             <Menu
-              className="w-[28px] h-[28px] object-contain cursor-pointer"
+              className="w-7 h-7 text-white cursor-pointer"
               onClick={() => setToggle(true)}
             />
           )}
         </div>
 
-        {/* Sidebar for Mobile View */}
+        {/* Mobile Sidebar */}
         <div
-          className={`fixed top-0 right-0 h-full w-full bg-primary1 z-20 transform ${
+          className={`fixed top-0 right-0 h-full w-full bg-black bg-opacity-80 backdrop-blur-lg z-50 transform ${
             toggle ? "translate-x-0" : "translate-x-full"
           } transition-transform duration-300 sm:hidden`}
         >
-          <div className="flex justify-between items-center p-5">
-            {/* Logo in Sidebar */}
+          <div className="flex items-center justify-center p-6 border-b border-white/10">
             <Link
               href="/"
               className="flex items-center gap-2"
@@ -97,27 +97,23 @@ const Navbar: React.FC = () => {
                 window.scrollTo(0, 0);
               }}
             >
-              <img src={Logo} alt="Logo" className="w-9 h-9 object-contain" />
-              <p className="text-white text-[18px] font-bold cursor-pointer">
-                ZOH<span className="sm:block">EB</span>
+              <Logo />
+              <p className="text-white text-xl font-bold">
+                ZOH<span className="hidden sm:inline">EB</span>
               </p>
             </Link>
-
-            {/* Close Icon in Sidebar */}
-            <Close
-              className="w-[28px] h-[28px] object-contain cursor-pointer"
+            <X
+              className="w-7 h-7 text-white cursor-pointer"
               onClick={() => setToggle(false)}
             />
           </div>
-
-          {/* Sidebar Nav Links */}
-          <ul className="list-none flex flex-col gap-8 p-10">
+          <ul className="flex flex-col gap-6 p-6">
             {navLinks.map((nav) => (
               <li
                 key={nav.id}
                 className={`${
-                  active === nav.title ? "text-white" : "text-secondary"
-                } hover:text-white text-[18px] font-medium cursor-pointer`}
+                  active === nav.title ? "text-white" : "text-gray-300"
+                } hover:text-white text-lg font-medium transition-colors duration-200`}
                 onClick={() => {
                   setToggle(false);
                   setActive(nav.title);

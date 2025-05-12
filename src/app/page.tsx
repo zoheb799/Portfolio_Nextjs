@@ -7,6 +7,7 @@ import Contact from "@/pages/Contact";
 import Navbar from "@/components/Navbar";
 import LoadingScreen from "@/components/Loading";
 import About from "@/pages/About";
+import "./globals.css";
 
 
 export default function Home() {
@@ -31,8 +32,8 @@ export default function Home() {
   return isLoading ? (
     <LoadingScreen progress={loadingProgress} />
   ) : (
-    <div className="  relative z-0 bg-primary scroll-smooth">
-      <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
+    <div className="  relative z-0  scroll-smooth">
+      <div className="">
         <Navbar />
         <section id="home"><Homepage /></section>
       </div>
