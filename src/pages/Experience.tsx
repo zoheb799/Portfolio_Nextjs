@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { VerticalTimeline, VerticalTimelineElement } from "react-vertical-timeline-component";
 import 'react-vertical-timeline-component/style.min.css';
 import { motion } from "framer-motion";
@@ -48,6 +48,12 @@ const experiences: ExperienceItem[] = [
 
 // Card component
 const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience, index }) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <VerticalTimelineElement
       contentStyle={{ background: "#1d1836", color: "#fff" }}
@@ -55,13 +61,15 @@ const ExperienceCard: React.FC<ExperienceCardProps> = ({ experience, index }) =>
       date={experience.duration}
       iconStyle={{ background: experience.iconBg }}
       icon={
-        <div className="flex justify-center items-center w-full h-full">
-          <img
-            src={experience.companyLogo}
-            alt={experience.companyName}
-            className="w-[60%] h-[60%] object-contain"
-          />
-        </div>
+        mounted ? (
+          <div className="flex justify-center items-center w-full h-full">
+            <img
+              src={experience.companyLogo}
+              alt={experience.companyName}
+              className="w-[60%] h-[60%] object-contain"
+            />
+          </div>
+        ) : null
       }
       position={index % 2 === 0 ? "left" : "right"}
     >
